@@ -1,0 +1,103 @@
+
+
+.location-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.select-location-btn, .confirm-btn, .current-location-btn, .change-location-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.select-location-btn {
+    background-color: #504f4f;
+    color: white;
+}
+
+.confirm-btn {
+    background-color: #d61e1e;
+    color: white;
+}
+
+.confirm-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.current-location-btn {
+    background-color: #d61e1e;
+}
+
+.change-location-btn {
+    background-color: #504f4f;
+    color: white;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+}
+
+.location-modal, .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.suggestions-list li:hover {
+    background: #f1f1f1;
+}
+
+.close-btn {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+}
+
+.selected-location {
+    margin-top: 20px;
+}
+
+.overlay-content p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.confirm-btn:hover {
+    background-color: #218838;
+}

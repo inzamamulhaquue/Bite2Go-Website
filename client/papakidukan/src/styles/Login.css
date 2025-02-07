@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    background: linear-gradient(135deg, #c9406d, #4dafff, #ff4d00);
+    background-size: 300% 300%;
+    animation: gradientBG 5s infinite alternate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+@keyframes gradientBG {
+    0% { background-position: left top; }
+    100% { background-position: right bottom; }
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(135deg, #c39fa6, #96a9b7, #a86f56);;
+    padding: 30px;
+    border: 2px solid #d6c6c6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.name-des{
+    color: #0a9688;
+}
+
+.name-brand{
+    color: #FF5722;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ff4d00;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #c6bbbb;
+    border-radius: 5px;
+    font-size: 17px;
+    outline: none;
+    transition: 0.3s; 
+}
+
+input:focus {
+    border-color: black;
+    box-shadow: 0 0 5px rgba(149, 52, 11, 0.5);
+}
+
+button {
+    background: #e2621c;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e04300;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.signup-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #ff4d00;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.mobile-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+}
+
+.prefix {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.mobile-input-container input {
+    border: none;
+    outline: none;
+    font-size: 17px;
+    width: 100%;
+    padding: 5px;
+}

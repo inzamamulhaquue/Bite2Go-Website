@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    background: linear-gradient(135deg, #c9406d, #4dafff, #ff4d00);
+    background-size: 300% 300%;
+    animation: gradientBG 5s infinite alternate;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: left top; }
+    100% { background-position: right bottom; }
+}
+
+/* Outer Box Container */
+.outer-container {
+    width: 120%;
+    max-width: 600px;
+    background: rgb(222, 201, 174);
+    border: 1px solid #ff5722;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Inner Form Container */
+.register-container {
+    background: linear-gradient(135deg, #c9b0b5, #96a9b7, #a86f56);
+    padding: 30px;
+    border: 1px solid #786f6f;
+    border-radius: 9px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #e44a1b;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #787575;
+    border-radius: 2px;
+    font-size: 17px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.reg-desc{
+    color: #0a9688;
+}
+
+.name-brand{
+    color:  #FF5722;
+}
+
+input:focus {
+    border-color: #e04300;
+    box-shadow: 0 0 5px rgba(224, 67, 0, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 2px;
+    background: #e2621c;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0;
+}
+
+button:hover {
+    background: #e04300;
+}
+
+
+
+.message {
+    color: #0a9688;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+/* Mobile Input with +91 Prefix */
+.mobile-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #c6bbbb;
+    border-radius: 5px;
+    padding: 0 12px;
+    background: white;
+}
+
+.prefix {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 8px;
+}
+
+.mobile-input-container input {
+    border: none;
+    outline: none;
+    font-size: 17px;
+    width: 100%;
+    padding: 12px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .outer-container {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    input, button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .prefix {
+        font-size: 16px;
+    }
+}
