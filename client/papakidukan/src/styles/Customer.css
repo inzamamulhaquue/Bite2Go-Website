@@ -1,0 +1,128 @@
+.customer-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Chat Section */
+.chat-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.chat-box {
+    background: #ded5d5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    height: 120px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    padding: 11px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user {
+    background: #97da83;
+    color: white;
+    text-align: right;
+    margin-left: auto;
+}
+
+.support {
+    background: #8fb7df;
+    text-align: left;
+    margin-right: auto;
+}
+
+/* Chat Input */
+.chat-section input {
+    width: calc(100% - 80px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.chat-section button {
+    padding: 10px 15px;
+    background: #45bc61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.chat-section button:hover {
+    background: #be526d;
+}
+
+/* Email Section */
+.email-section {
+    padding: 20px;
+    background: #ded5d5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.email-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-section input, .email-section textarea {
+    padding: 9px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.email-section textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.email-section button {
+    padding: 10px;
+    background: #45bc61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.email-section button:hover {
+    background: #be526d;
+}
+
+@media (max-width: 768px) {
+    .customer-container {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .chat-section input {
+        width: calc(100% - 70px);
+    }
+}

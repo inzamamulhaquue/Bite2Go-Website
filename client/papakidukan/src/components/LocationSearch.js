@@ -12,123 +12,169 @@ const LocationSearch = ({ onLocationSelect }) => {
     const locationsData = {
         Pune: ["Pune Railway Station", "Shivaji Nagar", "Koregaon Park", "Hinjewadi", "Kothrud"],
         Mumbai: ["Dadar", "Bandra", "Andheri", "Nariman Point", "Colaba"],
-        Delhi: ["Connaught Place", "Chandni Chowk", "Karol Bagh", "Saket", "Dwarka"]
+        Delhi: ["Delhi", "Chandni Chowk", "Karol Bagh", "Saket", "Dwarka"]
     };
+
 
     const handleChange = (e) => {
         const value = e.target.value;
         setLocation(value);
 
-        const lowerCaseLocations = Object.keys(locationsData).reduce((acc, key) => {
-            acc[key.toLowerCase()] = locationsData[key];
-            return acc;
-        }, {});
+    const lowerCaseLocations = Object.keys(locationsData).reduce((acc, key) => {
+        acc[key.toLowerCase()] = locationsData[key];
+        return acc;
+    }, {});
 
-        if (lowerCaseLocations[value.toLowerCase()]) {
-            setSuggestions(lowerCaseLocations[value.toLowerCase()]);
-        } else {
-            setSuggestions([]);
-        }
-    };
+    if (lowerCaseLocations[value.toLowerCase()]) {
+        setSuggestions(lowerCaseLocations[value.toLowerCase()]);
+    } else {
+        setSuggestions([]);
+    }
+};
 
-    const handleSelect = (selectedLocation) => {
-        setSelectedLocation(selectedLocation);
-        setLocation(""); // Clear the search bar after selecting a location
-        setSuggestions([]); // Clear suggestions after selection
-        // setLocation(selectedLocation);
-        setShowOverlay(true); // Show confirmation overlay
-        setShowModal(false);
-    };
+const handleSelect = async (selectedLocation) => {
+    setSelectedLocation(selectedLocation);
+    setLocation(""); // Clear the search bar after selecting a location
+    setSuggestions([]); // Clear suggestions after selection
+    setShowOverlay(true); // Show confirmation overlay
+    setShowModal(false);
+    onLocationSelect(selectedLocation);
+    await sendLocationToBackend(null, null, selectedLocation);
+};
 
-    const getCurrentLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    const currentLocation = `Lat: ${latitude}, Lng: ${longitude}`;
-                    setSelectedLocation(currentLocation);
-                    setLocation(currentLocation);
-                    setShowOverlay(true);
-                    setShowModal(false);
-                },
-                (error) => {
-                    console.error("Error fetching location:", error);
-                    alert("Unable to fetch location. Please enter manually.");
-                }
-            );
-        } else {
-            alert("Geolocation is not supported by your browser.");
-        }
-    };
+const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+        console.log("Geolocation is supported!");
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
 
-    const handleConfirm = () => {
-        setShowOverlay(false);
-        onLocationSelect(selectedLocation);
-    };
+                console.log("Fetched Coordinates:", latitude, longitude);
 
-    return (
-        <div className="location-container">
-            {/* Search Bar with Selected Location */}
-            <div className="search-bar-container">
-                <FaMapMarkerAlt className="location-icon" />
-                <input
-                    type="text"
-                    value={selectedLocation ? selectedLocation : "Search for your location..."}
-                    className="location-input"
-                    onClick={() => setShowModal(true)}
-                    readOnly
-                />
-            </div>
+                const address = await reverseGeocode(latitude, longitude);
+                setSelectedLocation(address);
+                setLocation(address);
+                setShowOverlay(true);//
+                setShowModal(false);//
+                onLocationSelect(address);
+                sendLocationToBackend(latitude, longitude, address);
+            },
+            (error) => {
+                console.error("Error fetching location:", error);
+                alert("Unable to fetch location. Please enter manually.");
+                console.log("Error Code:", error.code); // Log error code for debugging
+                console.log("Error Message:", error.message);
+            }
+        );
+    } else {
+        console.log("Geolocation is not supported.");
+        alert("Geolocation is not supported by your browser.");
+    }
+};
 
-            {/* Location Selection Modal */}
-            {showModal && (
-                <div className="location-modal">
-                    <div className="modal-content">
-                        <FaTimes className="close-btn" onClick={() => setShowModal(false)} />
-                        <h2>Select Your Location</h2>
+// Function to convert coordinates to address
+const reverseGeocode = async (lat, lng) => {
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+        const data = await response.json();
+        return data.display_name || `Lat: ${lat}, Lng: ${lng}`;
+    } catch (error) {
+        console.error("Error with reverse geocoding:", error);
+        return `Lat: ${lat}, Lng: ${lng}`;
+    }
+};
 
-                        {/* Search Bar */}
-                        <input
-                            type="text"
-                            value={location}
-                            onChange={handleChange}
-                            placeholder="Search for your location..."
-                            className="location-input"
-                        />
 
-                        {/* Location Suggestions */}
-                        {suggestions.length > 0 && (
-                            <ul className="suggestions-list">
-                                {suggestions.map((suggestion, index) => (
-                                    <li key={index} onClick={() => handleSelect(suggestion)}>
-                                        {suggestion}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+const sendLocationToBackend = async (latitude, longitude, address) => {
+    try {
+        const response = await fetch('http://localhost:5005/api/location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ latitude, longitude, address })
+        });
 
-                        {/* Use Current Location Button */}
-                        <button className="current-location-btn" onClick={getCurrentLocation}>
-                            Use Current Location
-                        </button>
-                    </div>
-                </div>
-            )}
+        const data = await response.json();
+        console.log(data.message);
+    } catch (error) {
+        console.error("Error sending location to backend:", error);
+    }
+};
 
-            {/* Shadow Overlay with Confirm & Continue */}
-            {showOverlay && (
-                <div className="overlay">
-                    <div className="overlay-content">
-                        <h2>Confirm Your Location</h2>
-                        <p>{selectedLocation}</p>
-                        <button className="confirm-btn" onClick={handleConfirm}>
-                            Confirm & Continue
-                        </button>
-                    </div>
-                </div>
-            )}
+const handleConfirm = () => {
+    setShowOverlay(false);
+    onLocationSelect(selectedLocation);
+};
+
+// Handle location search box clear after a location is confirmed
+const handleLocationSearchClick = () => {
+    if (location) {
+        setLocation("");  // Reset the location after set
+    }
+};
+
+return (
+    <div className="location-container">
+        {/* Search Bar with Selected Location */}
+        <div className="search-bar-container" onClick={handleLocationSearchClick}>
+            <FaMapMarkerAlt className="location-icon" />
+            <input
+                type="text"
+                value={selectedLocation || "Search for your location..."}
+                className="location-input"
+                onClick={() => setShowModal(true)}
+                readOnly
+            />
         </div>
-    );
+
+        {/* Location Selection Modal */}
+        {showModal && (
+            <div className="location-modal">
+                <div className="modal-content">
+                    <FaTimes className="close-btn" onClick={() => setShowModal(false)} />
+                    <h2>Select Your Location</h2>
+
+                    {/* Search Bar */}
+                    <input
+                        type="text"
+                        value={location}
+                        onChange={handleChange}
+                        placeholder="Search for your location..."
+                        className="location-input"
+                    />
+
+                    {/* Location Suggestions */}
+                    {suggestions.length > 0 && (
+                        <ul className="suggestions-list">
+                            {suggestions.map((suggestion, index) => (
+                                <li key={index} onClick={() => handleSelect(suggestion)}>
+                                    {suggestion}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+                    {/* Use Current Location Button */}
+                    <button className="current-location-btn" onClick={getCurrentLocation}>
+                        Use Current Location
+                    </button>
+                </div>
+            </div>
+        )}
+
+        {/* Shadow Overlay with Confirm & Continue */}
+        {showOverlay && (
+            <div className="overlay">
+                <div className="overlay-content">
+                    <h2>Confirm Your Location</h2>
+                    <p>{selectedLocation}</p>
+                    <button className="confirm-btn" onClick={handleConfirm}>
+                        Confirm & Continue
+                    </button>
+                </div>
+            </div>
+        )}
+    </div>
+);
 };
 
 export default LocationSearch;

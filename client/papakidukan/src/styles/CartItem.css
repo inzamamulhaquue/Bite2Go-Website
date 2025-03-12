@@ -1,0 +1,132 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .cart-item .item-details {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  
+  .cart-item .item-details h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .cart-item .item-details p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .cart-item .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item .quantity input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .cart-item .item-price {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .cart-item .remove-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .cart-item .remove-btn:hover {
+    background-color: #c82333;
+  }
+/* Cart Item Styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .cart-item .item-details {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  
+  .cart-item .item-details h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .cart-item .item-details p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .cart-item .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item .quantity input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .cart-item .item-price {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .cart-item .remove-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .cart-item .remove-btn:hover {
+    background-color: #c82333;
+  }
+    

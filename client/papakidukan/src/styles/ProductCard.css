@@ -1,0 +1,26 @@
+.counter-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-button,
+.remove-button {
+  background-color: #f0a500;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.add-button:hover,
+.remove-button:hover {
+  background-color: #d48806;
+}
+
+.quantity {
+  font-size: 18px;
+  font-weight: bold;
+}

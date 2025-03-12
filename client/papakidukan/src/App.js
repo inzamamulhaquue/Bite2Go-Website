@@ -2,19 +2,49 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from './pages/Register';
 import Login from './pages/Login'
-import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
+import ProfileDashboard from './pages/ProfileDashboard';
+import LocationSearch from './components/LocationSearch';
+import { AuthProvider } from "./context/AuthContext";
+import ProductsList from "./components/ProductsList";
+import Cart from './pages/Cart';
+import { CartProvider } from './context/CartContext';
+import CartItem from './components/CartItem';
+import ReviewForm from './components/ReviewForm';
+import Orders from "./pages/Order";
+import OrderSuccess from "./pages/OrderSuccess";
+import PaymentPage from './pages/PaymentPage';
 
 const App = () => {
+    const handleLocationselect = (location) => {
+        console.log("Selected Location: ", location);
+
+    };
+
     return (
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
-                </Routes>
-            </Router>
+        <AuthProvider>
+            <CartProvider>
+                <Router>
+                    <Routes>
+
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/profile/*" element={<ProfileDashboard />} />
+                        <Route path="/location" element={<LocationSearch onLocationSelect={handleLocationselect} />} />
+                        <Route path="/products" element={<ProductsList />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/cart-item" element={<CartItem />} />
+                        <Route path="/review/:productId" element={<ReviewForm />} />
+                        <Route path="/orders" element={<Orders />} />
+                        <Route path="/order-success" element={<OrderSuccess />} />
+                        <Route path="/payment" element={<PaymentPage />} /> 
+                    </Routes>
+
+                </Router>
+            </CartProvider>
+        </AuthProvider>
     );
 };
 

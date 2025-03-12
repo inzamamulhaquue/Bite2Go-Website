@@ -9,20 +9,11 @@ export const AuthProvider = ({ children }) => {
 
     // check if user loged in already!!
     useEffect(() => {
-        const token = localStorage.getItem("user");
-        if (token) {
-            // axios.get('http://localhost:5000/api/auth/verify', {
-            //             headers: { Authorization: `Bearer ${storedUser}` }
-            //         })
-            //         .then(response => {
-            //             setUser(response.data.user);
-            //         })
-            //         .catch(() => {
-            //             logout();  // If token is invalid, log the user out
-            //         });
-            //     }
-            // }, []);
-            setUser(token);
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            const userData = JSON.parse(storedUser);
+            setUser(userData);
+            localStorage.setItem('userId', userData._id);
         }
     }, []);
 
@@ -40,24 +31,27 @@ export const AuthProvider = ({ children }) => {
 
 
     // Login function
-    const login = async (formData) => {
+    const login = async ({ mobile, password }) => {
         try {
-            const response = await axios.post('http://localhost:5005/api/auth/login', formData);
-            setUser(response.data.token);
-            localStorage.setItem('token', response.data.token);
-            return response.data;
+            const response = await axios.post('http://localhost:5005/api/auth/login', { mobile, password });
+            if (response.data.user) {
+                setUser(response.data.user);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+                localStorage.setItem('userId', response.data.user._id);
+                return response.data;
+            } else {
+                return { error: "User data missing in response" };
+            }
         } catch (error) {
             return { error: error.response?.data?.error || 'Login failed' };
         }
     };
-    // const login = (userData) => {
-    //     setUser(userData);
-    //     localStorage.setItem("user", JSON.stringify(userData));
-    // };
 
 
     const logout = () => {
         setUser(null);
+        localStorage.removeItem("token");
         localStorage.removeItem("user");
     };
 

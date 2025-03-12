@@ -45,7 +45,7 @@ const Register = () => {
     return (
         <div className="outer-container">
             <div className="register-container">
-                <h1 className="name-brand">pApAk!dUK@n</h1>
+                <h1 className="name-brand">Bite2Go</h1>
                 <p><h3 className="reg-desc"> Groceries delivered in 10 minutes...</h3></p>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="name" placeholder="Name" onChange={handleChange} required />

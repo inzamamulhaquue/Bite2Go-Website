@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 body {
-    background: linear-gradient(135deg, #c9406d, #4dafff, #ff4d00);
+    background: linear-gradient(135deg, #bf7a91, #81a2bc, #c6937d);
     background-size: 300% 300%;
     animation: gradientBG 5s infinite alternate;
     height: 100vh;

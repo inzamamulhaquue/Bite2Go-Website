@@ -1,0 +1,14 @@
+.order-success {
+    text-align: center;
+    padding: 2rem;
+}
+
+.view-orders-btn,
+.back-home-btn {
+    margin: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

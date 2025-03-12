@@ -12,28 +12,25 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
         try {
-            const response = await fetch("http://localhost:5005/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mobile, password }),
-            });
+            const data = await login({ mobile, password });
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Login failed");
+            if (data.error) {
+                throw new Error(data.error);
             }
-
-            // Save user data in context
-            login(data.user);
-
+             // Store userId in localStorage after successful login in website via mobile and password
+        if (data.userId) {
+            localStorage.setItem("userId", data.userId);
+            console.log("Stored User ID:", localStorage.getItem("userId"));
+        } else {
+            console.warn("User ID not received in response:", data);
+        }
             navigate("/");
         } catch (err) {
             setError(err.message);
         }
     };
+    
 
 
     // +91 show always
@@ -50,7 +47,7 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <h1 className="name-brand">pApAk!dUK@n</h1>
+            <h1 className="name-brand">Bite2Go</h1>
             <p> <h2 className="name-des">Groceries delivered in 10 minutes ... </h2></p>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleLogin}>
@@ -65,16 +62,16 @@ const Login = () => {
                         required
                     />
 
-                    </div>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        maxLength={8}
-                        required
-                    />
-                    <button type="submit">Login</button>
+                </div>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    maxLength={8}
+                    required
+                />
+                <button type="submit">Login</button>
             </form>
             <p>Not registered? <a href="/register">Register here</a></p>
         </div>
