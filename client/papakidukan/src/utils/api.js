@@ -1,7 +1,8 @@
 // makes api call to backend 
 import axios from 'axios';
 
-const API = axios.create({baseURL: "http://localhost:5005/api"});
+// const API = axios.create({baseURL: "http://localhost:5005/api"});
+const API = axios.create({baseURL: "https://bite2go-app-backend.onrender.com"});
 
 //register user
 export const registerUser = (userData) => API.post("auth/register", userData);
