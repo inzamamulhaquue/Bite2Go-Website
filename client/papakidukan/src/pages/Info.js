@@ -1,7 +1,9 @@
 import React from 'react';
+import BackButton from '../components/backButton';
 
 const Info = ({user}) => (
     <div className="profile-info">
+         {/* <BackButton defaultPath="/profile" /> */}
     <h2>Profile Information</h2>
     {user ? (
         <>
@@ -12,6 +14,8 @@ const Info = ({user}) => (
     ) : (
         <p>Loading profile information...</p>
     )}
+    
+    <BackButton defaultPath="/profile" />
 </div>
 );
 

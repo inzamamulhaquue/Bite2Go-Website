@@ -12,7 +12,7 @@ router.post('/refresh-token', async (req, res) => {
             return res.status(401).json({ message: 'Invalid expired token' });
         }
 
-        const newToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const newToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: '100h' });
 
         res.setHeader('Authorization', `Bearer ${newToken}`);
         res.json({ token: newToken });

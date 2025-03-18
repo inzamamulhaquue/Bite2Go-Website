@@ -14,6 +14,7 @@ import ReviewForm from './components/ReviewForm';
 import Orders from "./pages/Order";
 import OrderSuccess from "./pages/OrderSuccess";
 import PaymentPage from './pages/PaymentPage';
+import './styles/global.css';
 
 const App = () => {
     const handleLocationselect = (location) => {

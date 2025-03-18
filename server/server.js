@@ -24,6 +24,7 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:3000',
+    // origin: 'https://bite2go-app-front.onrender.com',
     credentials: true
 }));
 

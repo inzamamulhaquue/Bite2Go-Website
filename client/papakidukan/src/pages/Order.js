@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Order.css";
+import BackButton from '../components/backButton';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -8,19 +9,32 @@ const Orders = () => {
 
     useEffect(() => {
         const fetchOrders = async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                console.error("❌ No token found. Please log in.");
+                return;
+            }
+
             try {
-                const response = await axios.get(`http://localhost:5005/api/orders/${userId}`);
-                if (response.data.success) {
+                const response = await axios.get(`http://localhost:5005/api/orders/${userId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+
+                console.log("✅ Order response data:", response.data);
+
+                if (response.data.orders && response.data.orders.length > 0) {
                     setOrders(response.data.orders);
+                } else {
+                    console.error("❌ No orders found");
                 }
             } catch (error) {
-                console.error("Error fetching orders:", error);
+                console.error("❌ Error fetching orders:", error.response?.data || error);
             }
         };
 
-        if (userId) {
-            fetchOrders();
-        }
+        fetchOrders();
     }, [userId]);
 
     return (
@@ -35,6 +49,19 @@ const Orders = () => {
                             <p><strong>Order ID:</strong> {order._id}</p>
                             <p><strong>Status:</strong> {order.status}</p>
                             <p><strong>Total Price:</strong> ₹{order.totalAmount.toFixed(2)}</p>
+                            <p>
+                                <strong>Total Discount (10% Off):</strong>
+                                ₹{order.offerDiscount > 0 ? order.offerDiscount.toFixed(2) : "N/A"}
+                            </p>
+                            <p>
+                                <strong>Delivery Fee:</strong>
+                                ₹{order.deliveryFee > 0 ? order.deliveryFee : "FREE"}
+                            </p>
+                            <p>
+                                <strong>To Pay:</strong> ₹
+                                {order.toPay ? order.toPay.toFixed(2) : "N/A"}
+                            </p>
+
                             <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
                             <h4>Items Ordered:</h4>
                             <ul>
@@ -46,7 +73,11 @@ const Orders = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <p><strong>Delivery Address:</strong> {order.address.street}, {order.address.city}, {order.address.state}</p>
+                            <p>
+                                <strong>Delivery Address:</strong>
+                                {order.address?.street}, {order.address?.city}, {order.address?.state}
+                            </p>
+                            <BackButton defaultPath="/profile" />
                         </li>
                     ))}
                 </ul>

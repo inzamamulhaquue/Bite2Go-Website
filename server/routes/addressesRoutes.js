@@ -7,7 +7,7 @@ router.use(authMiddleware);
 
 
 // GET /api/addresses for current user
-router.get("/", authMiddleware,  async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
     try {
         const userId = req.user.id;
         const userAddresses = await Address.find({ user: userId });
@@ -29,6 +29,9 @@ router.post("/", async (req, res) => {
         if (!houseName || !street || !locality || !city || !state || !zip) {
             return res.status(400).json({ message: "All fields are required" });
         }
+
+        const existingDefault = await Address.findOne({ user: req.user.id, isDefault: true });
+
         const newAddress = new Address({
             user: req.user.id,
             houseName,
@@ -36,7 +39,8 @@ router.post("/", async (req, res) => {
             street,
             city,
             state,
-            zip
+            zip,
+            isDefault: !existingDefault,
         });
 
         await newAddress.save();
@@ -50,20 +54,30 @@ router.post("/", async (req, res) => {
 
 // PUT /api/addresses/:id - Update an existing address
 router.put("/:id", async (req, res) => {
-    // const { houseName, street, locality, city, state, zip } = req.body;
+    const { houseName, street, locality, city, state, zip, isDefault } = req.body;
     const { id } = req.params;
 
     try {
         const userId = req.user.id;
 
         // Mark all addresses as non-default first
-        await Address.updateMany({ user: userId }, { isDefault: false });
+        if (isDefault) {
+            await Address.updateMany({ user: userId }, { isDefault: false });
+        }
 
         const updatedAddress = await Address.findOneAndUpdate(
-            { _id: id, user: userId },
-            { isDefault: true},
-            { new: true }
-        );
+        { _id: id, user: userId },
+        {
+            houseName,
+            street,
+            locality,
+            city,
+            state,
+            zip,
+            isDefault
+        },
+        { new: true }  // Return updated document
+    );
 
         if (!updatedAddress) {
             return res.status(404).json({ message: "Address not found" });
@@ -96,10 +110,15 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/default", async (req, res) => {
     try {
-        const defaultAddress = await Address.findOne({ user: req.user.id, isDefault: true });
+        let defaultAddress = await Address.findOne({ user: req.user.id, isDefault: true });
+
+        // If no default address, select the first available one
+        if (!defaultAddress) {
+            defaultAddress = await Address.findOne({ user: req.user.id }).sort({ createdAt: 1 });
+        }
 
         if (!defaultAddress) {
-            return res.status(404).json({ message: "No default address found." });
+            return res.status(404).json({ message: "No address found." });
         }
 
         res.json({ address: defaultAddress });
@@ -108,5 +127,6 @@ router.get("/default", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 module.exports = router;

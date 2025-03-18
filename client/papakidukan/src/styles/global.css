@@ -1,0 +1,46 @@
+/* Default for large screens */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* For tablets and smaller devices */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+
+    .cart-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;  /* Full width for mobile screens */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .address-section,
+    .payment-modal {
+        width: 100%; /* Full width for mobile */
+    }
+
+    .checkout-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.2rem;
+    }
+}

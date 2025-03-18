@@ -19,6 +19,9 @@ const orderSchema = new mongoose.Schema(
                 price: { type: Number, required: true },
             },
         ],
+        offerDiscount: { type: Number, default: 0 },
+        deliveryFee: { type: Number, default: 0 },
+        toPay: { type: Number, required: true },
         totalAmount: {
             type: Number,
             required: true,
@@ -34,11 +37,8 @@ const orderSchema = new mongoose.Schema(
             default: "Processing",
         },
         address: {
-            street: { type: String, required: true },
-            city: { type: String, required: true },
-            state: { type: String, required: true },
-            zipCode: { type: String, required: true },
-            country: { type: String, required: true },
+            type: Object,
+            required: true,
         },
     },
     { timestamps: true }

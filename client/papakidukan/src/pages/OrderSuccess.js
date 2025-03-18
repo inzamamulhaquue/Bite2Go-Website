@@ -7,8 +7,9 @@ const OrderSuccess = () => {
 
     return (
         <div className="order-success">
+            {/* <button className="back-button" onClick={() => navigate(-1)}>⬅️ Back</button> */}
             <h2>🎉 Order Placed Successfully!</h2>
-            <p>Thank you for your order. Your delicious food will be delivered soon!</p>
+            <p>Thank you for your order. Your oredr will be delivered soon!</p>
             <button onClick={() => navigate("/orders")} className="view-orders-btn">
                 View Orders
             </button>

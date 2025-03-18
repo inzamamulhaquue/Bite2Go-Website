@@ -17,7 +17,7 @@ exports.registerUser = async (req, res) => {
         const user = new User ({name, email, password, mobile});
         await user.save();
 
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '7d'});
         res.status(201).json({ token , user});
 
     } catch (err){
@@ -44,7 +44,7 @@ exports.loginUser = async (req, res) => {
             return res.status(400).json({message: 'Invalid Passowrd'});
         };
 
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '100h'});
         res.status(200).json({ token , user});
 
     } catch (err){

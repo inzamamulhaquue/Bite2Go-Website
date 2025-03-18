@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Customer.css";
+import BackButton from "../components/backButton";
 
 const Customer = () => {
     const [message, setMessage] = useState("");
@@ -26,6 +27,8 @@ const Customer = () => {
 
     return (
         <div className="customer-container">
+            
+            <BackButton defaultPath="/profile" />
             <h2>Customer Support</h2>
 
             <div className="chat-section">
@@ -66,6 +69,9 @@ const Customer = () => {
                     <button type="submit">Send Email</button>
                 </form>
             </div>
+            
+            <BackButton defaultPath="/profile" />
+            
         </div>
     );
 };
