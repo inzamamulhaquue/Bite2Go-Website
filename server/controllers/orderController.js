@@ -56,8 +56,11 @@ exports.getUserOrders = async (req, res) => {
 
     try {
         const orders = await OrderModel.find({ userId })
+        .populate("userId", "name mobile email") ///new add
             .populate("items.productId", "name price")
             .sort({ createdAt: -1 });
+
+            console.log("✅ Orders with user details:", orders);
 
         if (!orders.length) {
             return res.status(404).json({ message: "No orders found." });
@@ -76,6 +79,7 @@ exports.getUserOrders = async (req, res) => {
 
             return {
                 ...order.toObject(),
+                userDetails: {   name: order.userId?.name,  phone: order.userId?.mobile || order.userId?.phone}, // ✅ Add userDetails here
                 totalAmount,
                 deliveryFee,
                 offerDiscount,

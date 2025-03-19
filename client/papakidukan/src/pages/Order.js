@@ -37,6 +37,19 @@ const Orders = () => {
         fetchOrders();
     }, [userId]);
 
+    // Date formatting function
+    const formatDate = (dateString) => {
+        // console.log("📅 DateString value inside formatDate:", dateString);
+        if (!dateString) return "N/A";
+        const date = new Date(dateString);
+
+        return `${date.toLocaleDateString()} at ${date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+        })}`;
+    };
+
     return (
         <div className="orders">
             <h2>Your Orders</h2>
@@ -48,6 +61,12 @@ const Orders = () => {
                         <li key={order._id} className="order-card">
                             <p><strong>Order ID:</strong> {order._id}</p>
                             <p><strong>Status:</strong> {order.status}</p>
+                            <p><strong>Order Date & Time:</strong> {formatDate(order.orderDate || order.createdAt)}</p>
+
+                            <h4>User Details:</h4>
+                            <p><strong>Name:</strong> {order.userDetails?.name || "N/A"}</p>
+                            <p><strong>Phone:</strong> {order.userDetails?.phone || "N/A"}</p>
+
                             <p><strong>Total Price:</strong> ₹{order.totalAmount.toFixed(2)}</p>
                             <p>
                                 <strong>Total Discount (10% Off):</strong>
