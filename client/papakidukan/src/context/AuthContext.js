@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
+
+const API_URL = "https://bite2go-website-back1.onrender.com/api"; //cloud ke liye
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
@@ -21,7 +24,8 @@ export const AuthProvider = ({ children }) => {
     //register
     const register = async (formData) => {
         try {
-            const response = await axios.post('http://localhost:5005/api/auth/register', formData);
+            // const response = await axios.post('http://localhost:5005/api/auth/register', formData);
+            const response = await axios.post(`${API_URL}/auth/register`, formData);
             return response.data;
         } catch (error) {
             console.error('Registration Error:', error.response || error.message);
@@ -33,7 +37,8 @@ export const AuthProvider = ({ children }) => {
     // Login function
     const login = async ({ mobile, password }) => {
         try {
-            const response = await axios.post('http://localhost:5005/api/auth/login', { mobile, password });
+            // const response = await axios.post('http://localhost:5005/api/auth/login', { mobile, password });
+            const response = await axios.post(`${API_URL}/auth/login`, { mobile, password });
             if (response.data.user) {
                 setUser(response.data.user);
                 localStorage.setItem('token', response.data.token);
