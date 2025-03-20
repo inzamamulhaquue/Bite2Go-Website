@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5005/api/products";
+// const API_URL = "http://localhost:5005/api/products";
+const API = axios.create({ 
+    baseURL: "https://bite2go-website-back1.onrender.com/api"
+});
 
 export const fetchProducts = async () => {
   try {
