@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = process.env.REACT_APP_API_URL;
+// const API_URL = process.env.REACT_APP_API_URL;
 
-// const API_URL = "https://bite2go-website-back1.onrender.com/api"; //cloud ke liye
+const API_URL = "https://bite2go-website-back1.onrender.com/api"; //cloud ke liye
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
