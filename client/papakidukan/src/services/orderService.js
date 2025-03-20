@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5005/api/orders';
+// const API_URL = 'http://localhost:5005/api/orders';
+const API_URL = "https://bite2go-website-back1.onrender.com/api/orders";
 
 export const createOrder = async (orderData, token) => {
     const response = await axios.post(`${API_URL}/checkout`, orderData, {
