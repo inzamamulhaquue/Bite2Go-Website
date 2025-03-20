@@ -54,7 +54,11 @@ const Orders = () => {
         <div className="orders">
             <h2>Your Orders</h2>
             {orders.length === 0 ? (
+                <>
                 <p>No Orders Found</p>
+                <BackButton defaultPath="/profile" />
+                </>
+                
             ) : (
                 <ul>
                     {orders.map((order) => (
@@ -96,11 +100,13 @@ const Orders = () => {
                                 <strong>Delivery Address:</strong>
                                 {order.address?.street}, {order.address?.city}, {order.address?.state}
                             </p>
-                            <BackButton defaultPath="/profile" />
+                            {/* <BackButton defaultPath="/profile" /> */}
                         </li>
                     ))}
                 </ul>
             )}
+            
+            {orders.length > 0 && <BackButton defaultPath="/profile" />}
         </div>
     );
 };
