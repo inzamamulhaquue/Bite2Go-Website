@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CartContext = createContext();
 
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://bite2go-website-back1.onrender.com/api";
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({ items: [], totalAmount: 0 });
@@ -28,8 +28,8 @@ export const CartProvider = ({ children }) => {
     const fetchCart = async () => {
         if (!userId) return;
         try {
-            const response = await axios.get(`http://localhost:5005/api/cart/${userId}`);
-            // const response = await axios.get(`${API_URL}/cart/${userId}`);
+            // const response = await axios.get(`http://localhost:5005/api/cart/${userId}`);
+            const response = await axios.get(`${API_URL}/cart/${userId}`);
             setCart(response.data || { items: [], totalAmount: 0});
         } catch (error) {
             console.error("Error fetching cart:", error);
@@ -45,8 +45,8 @@ export const CartProvider = ({ children }) => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5005/api/cart/add`, {
-            // const response = await axios.post(`${API_URL}/cart/add`, {
+            // const response = await axios.post(`http://localhost:5005/api/cart/add`, {
+            const response = await axios.post(`${API_URL}/cart/add`, {
                 userId,
                 productId: product._id,
                 price: product.price
