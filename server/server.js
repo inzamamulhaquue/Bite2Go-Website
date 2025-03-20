@@ -1,21 +1,39 @@
-const express = require('express');
-const connectDataBase = require('./config/db');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const cors = require('cors');
-const locationRoutes = require('./routes/locationRoutes');
-const addressesRouter = require("./routes/addressesRoutes");
-const ProductRoutes = require('./routes/ProductRoutes'); //
-const isAdmin = require('./middleware/adminAuth');
-const adminRoutes = require('./routes/adminRoutes');
-const path = require('path');
-const cartRoutes = require('./routes/cartRoutes');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/userRoutes');
-// const paymentRoutes = require("./routes/paymentRoutes");
-const orderRoutes = require("./routes/orderRoutes");
-const authRefresh = require('./middleware/authRefresh');
+// const express = require('express');
+// const connectDataBase = require('./config/db');
+// const dotenv = require('dotenv');
+// const authRoutes = require('./routes/authRoutes');
+// const cors = require('cors');
+// const locationRoutes = require('./routes/locationRoutes');
+// const addressesRouter = require("./routes/addressesRoutes");
+// const ProductRoutes = require('./routes/ProductRoutes'); //
+// const isAdmin = require('./middleware/adminAuth');
+// const adminRoutes = require('./routes/adminRoutes');
+// const path = require('path');
+// const cartRoutes = require('./routes/cartRoutes');
+// const bodyParser = require('body-parser');
+// const mongoose = require('mongoose');
+// const userRoutes = require('./routes/userRoutes');
+// // const paymentRoutes = require("./routes/paymentRoutes");
+// const orderRoutes = require("./routes/orderRoutes");
+// const authRefresh = require('./middleware/authRefresh');
+
+import express from 'express';
+import connectDataBase from './config/db.js';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+import cors from 'cors';
+import locationRoutes from './routes/locationRoutes.js';
+import addressesRouter from "./routes/addressesRoutes.js";
+import ProductRoutes from './routes/ProductRoutes.js';
+import isAdmin from './middleware/adminAuth.js';
+import adminRoutes from './routes/adminRoutes.js';
+import path from 'path';
+import cartRoutes from './routes/cartRoutes.js';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import authRefresh from './middleware/authRefresh.js';
 
 dotenv.config();
 connectDataBase();
