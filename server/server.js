@@ -22,16 +22,18 @@ connectDataBase();
 
 const app = express();
 
-// app.use(cors({
-//     origin: 'http://localhost:3000',
-//     'https://bite2go-website-front1.onrender.com'
-//     credentials: true
-// }));
-
 app.use(cors({
     origin: ['http://localhost:3000', 'https://bite2go-website-front1.onrender.com'],
     credentials: true
 }));
+
+// ✅ Corrected Middleware Order - Static files should be served before defining routes
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 app.use(express.json());
 app.use(bodyParser.json());
