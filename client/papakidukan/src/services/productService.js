@@ -3,11 +3,10 @@ import axios from "axios";
 // const API_URL = "http://localhost:5005/api/products";
 
 //ye thk hai
-// const API_URL = axios.create({ 
-//     baseURL: "https://bite2go-website-back1.onrender.com/api"
-// });
+const API_URL = axios.create({ 
+    baseURL: "https://bite2go-website-back1.onrender.com/api"
+});
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchProducts = async () => {
   try {
