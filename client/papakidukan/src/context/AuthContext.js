@@ -25,7 +25,9 @@ export const AuthProvider = ({ children }) => {
     const register = async (formData) => {
         try {
             // const response = await axios.post('http://localhost:5005/api/auth/register', formData);
-            const response = await axios.post(`${API_URL}/auth/register`, formData);
+            const response = await axios.post(`${API_URL}/auth/register`, formData, {
+                headers: { 'Content-Type': 'application/json' } // Important for POST requests
+        });
             return response.data;
         } catch (error) {
             console.error('Registration Error:', error.response || error.message);
