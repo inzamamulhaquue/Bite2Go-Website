@@ -29,7 +29,7 @@ const app = express();
 // }));
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://bite2go-app-front1.onrender.com'],
+    origin: ['http://localhost:3000', 'https://bite2go-website-front1.onrender.com'],
     credentials: true
 }));
 
