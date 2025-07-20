@@ -34,6 +34,11 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import authRefresh from './middleware/authRefresh.js';
+import { fileURLToPath } from 'url';
+
+// Fix for ES Modules to get __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 connectDataBase();
@@ -45,11 +50,8 @@ app.use(cors({
     credentials: true
 }));
 
-// ✅ Corrected Middleware Order - Static files should be served before defining routes
-const __dirname = path.resolve();
-
+// ✅ Serve static files (React frontend build)
 app.use(express.static(path.join(__dirname, 'client', 'build')));
-// app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
@@ -58,12 +60,11 @@ app.get("*", (req, res) => {
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use('/images', express.static(path.join(__dirname, 'dataset', 'dataset\iconic-images-and-descriptions')));
+// app.use('/images', express.static(path.join(__dirname, 'dataset', 'dataset\iconic-images-and-descriptions')));
+// ✅ Serve images (adjust folder as needed)
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-
-
-app.use('/images', express.static(...));
 app.use('/api/auth', authRoutes); // auth routes
 app.use('/api/location', locationRoutes); //location routes
 app.use("/api/addresses", addressesRouter); //address
