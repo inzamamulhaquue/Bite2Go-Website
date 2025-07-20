@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CartContext = createContext();
 
-const API_URL = "https://bite2go-website-backend.onrender.com";
+const API_URL = "https://bite2go-website-backend.onrender.com/api/products";
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({ items: [], totalAmount: 0 });
