@@ -47,7 +47,9 @@ app.use(cors({
 
 // ✅ Corrected Middleware Order - Static files should be served before defining routes
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+// app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
@@ -61,7 +63,7 @@ app.use('/images', express.static(path.join(__dirname, 'dataset', 'dataset\iconi
 
 
 
-
+app.use('/images', express.static(...));
 app.use('/api/auth', authRoutes); // auth routes
 app.use('/api/location', locationRoutes); //location routes
 app.use("/api/addresses", addressesRouter); //address
