@@ -9,11 +9,12 @@
 
 // routes/productRoutes.cjs (or .js with CommonJS)
 
-const express = require('express');
+import express from 'express';
+import { getProducts, uploadCSV, uploadMiddleware } from '../controllers/productController.js';
+
 const router = express.Router();
-const productController = require('../controllers/productController.cjs');
 
-router.get('/', productController.getProducts);
-router.post('/upload', productController.upload, productController.uploadCSV);
+router.get('/', getProducts);
+router.post('/upload', uploadMiddleware, uploadCSV);
 
-module.exports = router;
+export default router;
