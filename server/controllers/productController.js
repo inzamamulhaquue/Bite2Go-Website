@@ -1,76 +1,71 @@
-const csv = require("csv-parser");
-const multer  = require("multer");
-const Product = require("../models/Product");
-const fs = require("fs");
-const path = require('path');
-
-if (process.env.NODE_ENV !== "production") {
-  const sourcePath = path.resolve("C:/Users/Admin/Desktop/PapaKiDukaan/server/uploads/productData_20_bite2go.csv");
-  const destinationPath = path.join(__dirname, "../uploads/productData_20_bite2go.csv");
-
-  fs.rename(sourcePath, destinationPath, (err) => {
-    if (err) {
-      console.error("❌ Error moving file:", err.message);
-    } else {
-      console.log("✅ File successfully moved to /uploads!");
-    }
-  });
-}
+import csv from 'csv-parser';
+import multer from 'multer';
+import Product from '../models/Product.js';
+import fs from 'fs';
+import path from 'path';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, "../uploads"));
+    cb(null, path.join(path.resolve(), 'uploads'));
   },
   filename: (req, file, cb) => {
-      cb(null, Date.now() + "-" + file.originalname);
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
-exports.uploadCSV = async (req, res) => {
-  if (!req.file) return res.status(400).json({ message: "No file uploaded" });
+export const uploadCSV = async (req, res) => {
+  if (!req.file) return res.status(400).json({ message: 'No file uploaded' });
 
   const filePath = req.file.path;
   const products = [];
 
   try {
-      fs.createReadStream(filePath)
-          .pipe(csv())
-          .on("data", (row) => {
-              const product = {
-                  name: row.title || "Unknown Product",
-                  description: row.description || "No description available",
-                  price: parseFloat(row["pricing.price"]) || 0,
-                  category: row.brand || "General",
-                  imageUrl: row.productImage || ""
-              };
-              products.push(product);
-          })
-          .on("end", async () => {
-              try {
-                  await Product.insertMany(products);
-                  fs.unlinkSync(filePath);
-                  res.json({ message: "✅ Products uploaded successfully!", count: products.length });
-              } catch (err) {
-                  res.status(500).json({ message: "❌ Error saving products to database", error: err });
-              }
-          });
+    fs.createReadStream(filePath)
+      .pipe(csv())
+      .on('data', (row) => {
+        const product = {
+          name: row.title || 'Unknown Product',
+          description: row.description || 'No description available',
+          price: parseFloat(row['pricing.price']) || 0,
+          category: row.brand || 'General',
+          imageUrl: row.productImage || ''
+        };
+        products.push(product);
+      })
+      .on('end', async () => {
+        try {
+          await Product.insertMany(products);
+          fs.unlinkSync(filePath);
+          res.json({ message: '✅ Products uploaded successfully!', count: products.length });
+        } catch (err) {
+          res.status(500).json({ message: '❌ Error saving products to database', error: err });
+        }
+      });
   } catch (err) {
-      res.status(500).json({ message: "❌ Error processing file", error: err });
+    res.status(500).json({ message: '❌ Error processing file', error: err });
   }
 };
 
-exports.getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
-      const products = await Product.find();
-      res.json(products);
+    const products = await Product.find();
+    res.json(products);
   } catch (err) {
-      res.status(500).json({ message: "❌ Error fetching products", error: err });
+    res.status(500).json({ message: '❌ Error fetching products', error: err });
   }
 };
 
-exports.upload = upload.single("file");
+export const uploadMiddleware = upload.single('file');
+
+
+
+// const csv = require("csv-parser");
+// const multer  = require("multer");
+// const Product = require("../models/Product");
+// const fs = require("fs");
+// const path = require('path');
 
 //current CSV file path
 // const sourcePath = "C:/Users/Admin/Desktop/PapaKiDukaan/server/uploads/productData_20_bite2go.csv";  because render is linux 
