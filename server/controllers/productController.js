@@ -6,20 +6,34 @@ const path = require('path');
 
 
 //current CSV file path
-const sourcePath = "C:/Users/Admin/Desktop/PapaKiDukaan/server/uploads/productData_20_bite2go.csv";
+// const sourcePath = "C:/Users/Admin/Desktop/PapaKiDukaan/server/uploads/productData_20_bite2go.csv";  because render is linux 
 
 
-// Destination: Move it to the /uploads folder
-const destinationPath = path.join(__dirname, "../uploads/productData_20_bite2go.csv");
+// // Destination: Move it to the /uploads folder
+// const destinationPath = path.join(__dirname, "../uploads/productData_20_bite2go.csv");
 
-// Move file from Downloads to Uploads folder (Before processing CSV)
-fs.rename(sourcePath, destinationPath, (err) => {
-  if (err) {
-      console.error("❌ Error moving file:", err);
-  } else {
+// // Move file from Downloads to Uploads folder (Before processing CSV)
+// fs.rename(sourcePath, destinationPath, (err) => {
+//   if (err) {
+//       console.error("❌ Error moving file:", err);
+//   } else {
+//       console.log("✅ File successfully moved to /uploads!");
+//   }
+// });
+
+// ✅ Move local CSV only in development (so Render doesn't break)
+if (process.env.NODE_ENV !== "production") {
+  const sourcePath = path.resolve("C:/Users/Admin/Desktop/PapaKiDukaan/server/uploads/productData_20_bite2go.csv");
+  const destinationPath = path.join(__dirname, "../uploads/productData_20_bite2go.csv");
+
+  fs.rename(sourcePath, destinationPath, (err) => {
+    if (err) {
+      console.error("❌ Error moving file:", err.message);
+    } else {
       console.log("✅ File successfully moved to /uploads!");
-  }
-});
+    }
+  });
+}
 
 // ✅ Configure Multer for File Upload
 const storage = multer.diskStorage({
