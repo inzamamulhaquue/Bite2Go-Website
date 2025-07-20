@@ -10,7 +10,8 @@ const Products = () => {
 
     // Fetching products when the component mounts
     useEffect(() => {
-        fetch('http://localhost:5005/api/products')
+        // fetch('http://localhost:5005/api/products')
+        fetch('https://bite2go-website-backend.onrender.com/api/products')
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(err => console.error('Error fetching products:', err));
@@ -43,7 +44,8 @@ const Products = () => {
             <div className="products-list">
                 {filteredProducts.map(product => (
                     <div key={product.id} className="product-card">
-                        <img src={`http://localhost:5005/uploads/${product.imageUrl}`} alt={product.name} />
+                        // <img src={`http://localhost:5005/uploads/${product.imageUrl}`} alt={product.name} />
+                        <img src={`https://bite2go-website-backend.onrender.com/uploads/${product.imageUrl}`} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
                         <p>Price: ₹{product.price}</p>
