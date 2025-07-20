@@ -7,8 +7,6 @@ const AuthContext = createContext();
 
 const API_URL = "https://bite2go-website-backend.onrender.com/api"; //cloud ke liye
 
-const response = await axios.post(`${API_URL}/auth/register`, formData);
-
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
