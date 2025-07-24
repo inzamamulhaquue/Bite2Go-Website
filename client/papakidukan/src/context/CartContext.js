@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CartContext = createContext();
 
-const API_URL = "https://bite2go-website-backend.onrender.com/api";
+const API_URL = "https://bite2go-website.onrender.com/api";
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({ items: [], totalAmount: 0 });
@@ -71,7 +71,8 @@ export const CartProvider = ({ children }) => {
             return;
         }
         try {
-            const response = await axios.put("http://localhost:5005/api/cart/update", {
+            // const response = await axios.put("http://localhost:5005/api/cart/update", {
+                const response = await axios.put(`${API_URL}/cart/update`, {
                 userId,
                 productId,
                 action
@@ -104,7 +105,8 @@ export const CartProvider = ({ children }) => {
         }
 
         try {
-            const response = await axios.delete(`http://localhost:5005/api/cart/remove`, {
+            // const response = await axios.delete(`http://localhost:5005/api/cart/remove`, {
+            const response = await axios.delete(`${API_URL}/cart/remove`, {
                 data: { userId, productId }
             });
 
