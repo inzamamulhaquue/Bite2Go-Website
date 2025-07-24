@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 // const API_URL = process.env.REACT_APP_API_URL;
 
-const API_URL = "https://bite2go-website-backend.onrender.com/api"; //cloud ke liye
+const API_URL = "https://bite2go-website.onrender.com/api"; //cloud ke liye
 
 
 export const AuthProvider = ({ children }) => {
