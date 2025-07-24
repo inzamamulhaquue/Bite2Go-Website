@@ -50,8 +50,7 @@ app.use(cors({
     credentials: true
 }));
 
-// ✅ Serve static files (React frontend build)
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -76,9 +75,12 @@ app.use("/api/orders", orderRoutes); //order
 
 app.use('/api', authRefresh); //authrefersh token
 
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+
+// ✅ Serve static files (React frontend build)
+// app.use(express.static(path.join(__dirname, 'client', 'build')));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
  
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => {
