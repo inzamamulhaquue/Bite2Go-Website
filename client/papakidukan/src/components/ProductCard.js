@@ -4,6 +4,8 @@ import "../styles/ProductCard.css";
 import CartContext from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
+     if (!product) return null;
+    
     const { addToCart, removeFromCart, cart } = useContext(CartContext);
     const quantity = cart?.items?.find(item => item.productId === product._id)?.quantity || 0;
 
