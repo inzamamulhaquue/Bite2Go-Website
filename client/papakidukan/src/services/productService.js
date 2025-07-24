@@ -4,7 +4,7 @@ import axios from "axios";
 
 //ye thk hai
 const API_URL = axios.create({ 
-    baseURL: "https://bite2go-website-back1.onrender.com/api"
+    baseURL: "https://bite2go-website.onrender.com/api"
 });
 
 
