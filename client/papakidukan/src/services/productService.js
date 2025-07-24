@@ -4,14 +4,15 @@ import axios from "axios";
 
 //ye thk hai
 const API_URL = axios.create({ 
-    baseURL: "https://bite2go-website.onrender.com/api"
+    baseURL: "https://bite2go-website.onrender.com/api",
+    withCredentials: true,
 });
 
 
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/products`);
-      // const response = await API_URL.get("/products");
+    // const response = await axios.get(`${API_URL}/products`);
+      const response = await API.get("/products");
     return response.data;
   } catch (error) {
     console.error("Error fetching products:", error);
