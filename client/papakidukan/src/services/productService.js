@@ -5,7 +5,7 @@ import axios from "axios";
 //ye thk hai
 const API_URL = axios.create({ 
     baseURL: "https://bite2go-website.onrender.com/api",
-    withCredentials: true,
+    withCredentials: false,
 });
 
 
@@ -15,7 +15,7 @@ export const fetchProducts = async () => {
       const response = await API_URL.get("/products");
     return response.data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching products:", error?.response?.data || error.message);
     throw error;
   }
 };
