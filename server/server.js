@@ -75,6 +75,10 @@ app.use("/api/orders", orderRoutes); //order
 
 app.use('/api', authRefresh); //authrefersh token
 
+app.get("/", (req, res) => {
+    res.send("Bite2Go Backend is Working ✅");
+});
+
 
 // ✅ Serve static files (React frontend build)
 // app.use(express.static(path.join(__dirname, 'client', 'build')));
