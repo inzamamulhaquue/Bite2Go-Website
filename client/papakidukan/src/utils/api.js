@@ -1,8 +1,12 @@
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 // makes api call to backend 
 import axios from 'axios';
 
 // const API = axios.create({baseURL: "http://localhost:5005/api"});
-const API = axios.create({ baseURL: "https://bite2go-website-back1.onrender.com/api"}); 
+const API = axios.create({ baseURL: API_BASE_URL,
+                         withCredentials: true,
+                         }); 
 
 //register user
 export const registerUser = (userData) => API.post("auth/register", userData);
