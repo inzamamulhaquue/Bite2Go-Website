@@ -11,6 +11,8 @@ const Addresses = () => {
     const [showAddresses, setShowAddresses] = useState(false);
     const [editAddressId, setEditAddressId] = useState(null);
 
+    const baseUrl = process.env.REACT_APP_API_BASE_URL; //.env file 
+
     const [newAddress, setNewAddress] = useState({
         houseName: "",
         street: "",
@@ -29,7 +31,8 @@ const Addresses = () => {
                 return;
             }
 
-            const response = await fetchWithTokenRefresh("http://localhost:5005/api/addresses", {
+            // const response = await fetchWithTokenRefresh("http://localhost:5005/api/addresses", {
+            const response = await fetchWithTokenRefresh(`${baseUrl}/api/addresses`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -66,9 +69,14 @@ const Addresses = () => {
         if (isSubmitting) return;
         setIsSubmitting(true);
 
+        // const endpoint = editAddressId
+        //     ? `http://localhost:5005/api/addresses/${editAddressId}`
+        //     : "http://localhost:5005/api/addresses";
+
         const endpoint = editAddressId
-            ? `http://localhost:5005/api/addresses/${editAddressId}`
-            : "http://localhost:5005/api/addresses";
+            ? `${baseUrl}/api/addresses/${editAddressId}`
+            : `${baseUrl}/api/addresses`;
+
 
         const method = editAddressId ? "PUT" : "POST";
 
@@ -128,7 +136,8 @@ const Addresses = () => {
                 return;
             }
 
-            const response = await fetchWithTokenRefresh(`http://localhost:5005/api/addresses/${editAddressId}`, {
+            // const response = await fetchWithTokenRefresh(`http://localhost:5005/api/addresses/${editAddressId}`, {
+            const response = await fetchWithTokenRefresh(`${baseUrl}/api/addresses/${editAddressId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,
