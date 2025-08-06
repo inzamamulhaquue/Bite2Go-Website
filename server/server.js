@@ -81,9 +81,9 @@ app.get("/", (req, res) => {
 
 
 // ✅ Serve static files (React frontend build)
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'client/papakidukan' , 'build')));
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client/papakiduakn", "build" "index.html"));
 });
  
 const PORT = process.env.PORT || 5005;
