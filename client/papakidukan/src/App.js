@@ -16,7 +16,8 @@ import OrderSuccess from "./pages/OrderSuccess";
 import PaymentPage from './pages/PaymentPage';
 import './styles/global.css';
 
-import { useAuth } from '../context/AuthContext'; //yuhi
+import { useAuth } from './context/AuthContext'; //yuhi
+
 
 const App = () => {
 
