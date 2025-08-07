@@ -11,7 +11,9 @@ export const fetchWithTokenRefresh = async (url, options = {}) => {
 
     // Auto-refresh logic
     if (response.status === 401) {
-        const refreshResponse = await fetch("http://localhost:5005/api/refresh-token", {
+        // const refreshResponse = await fetch("http://localhost:5005/api/refresh-token", {
+        const refreshResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/refresh-token`, {
+
             method: "POST",
             headers: { "Authorization": `Bearer ${token}` }
         });
