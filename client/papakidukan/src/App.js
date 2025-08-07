@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Home from './pages/Home';
 import ProfileDashboard from './pages/ProfileDashboard';
 import LocationSearch from './components/LocationSearch';
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProductsList from "./components/ProductsList";
 import Cart from './pages/Cart';
 import { CartProvider } from './context/CartContext';
@@ -15,8 +15,6 @@ import Orders from "./pages/Order";
 import OrderSuccess from "./pages/OrderSuccess";
 import PaymentPage from './pages/PaymentPage';
 import './styles/global.css';
-
-import { useAuth } from './context/AuthContext'; //yuhi
 
 
 const App = () => {
