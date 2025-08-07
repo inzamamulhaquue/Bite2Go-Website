@@ -51,6 +51,8 @@ const AppRoutes = () => {
                     </Routes>
 
                 </Router>
+    );
+    };
         const App = () => (
     <AuthProvider>
         <CartProvider>
