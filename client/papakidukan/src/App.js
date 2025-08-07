@@ -17,7 +17,8 @@ import PaymentPage from './pages/PaymentPage';
 import './styles/global.css';
 
 
-const App = () => {
+// const App = () => {
+const AppRoutes = () => {
 
     const { user } = useAuth();
     console.log("AuthContext User:", user);
@@ -50,9 +51,16 @@ const App = () => {
                     </Routes>
 
                 </Router>
-            </CartProvider>
-        </AuthProvider>
+        const App = () => (
+    <AuthProvider>
+        <CartProvider>
+            <AppRoutes />
+        </CartProvider>
+    </AuthProvider>
+            
+        //     </CartProvider>
+        // </AuthProvider>
     );
-};
+// };
 
 export default App;
