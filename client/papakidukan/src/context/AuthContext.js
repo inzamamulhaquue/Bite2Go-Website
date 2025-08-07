@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
 
-const AuthContext = createContext();
+// const AuthContext = createContext();
+export const AuthContext = createContext();
 
 // const API_URL = process.env.REACT_APP_API_URL;
 
@@ -65,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, register, login, logout }}>
+        <AuthContext.Provider value={{ user, register, login, logout, setUser }}>
             {children}
         </AuthContext.Provider>
     );
