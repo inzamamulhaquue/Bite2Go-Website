@@ -46,7 +46,7 @@ export const CartProvider = ({ children }) => {
 
         try {
             // const response = await axios.post(`http://localhost:5005/api/cart/add`, {
-            const response = await axios.post(`${API_URL}/cart/add`, ...{
+            const response = await axios.post(`${API_URL}/cart/add`, {
                 userId,
                 productId: product._id,
                 price: product.price
