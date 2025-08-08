@@ -1,5 +1,5 @@
-html,
-body {
+/* Reset & base styles */
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -9,14 +9,15 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
+/* Container for the whole Home page */
 .home-container {
   font-family: Arial, sans-serif;
-  padding-top: 100px;
+  padding-top: 100px; /* space for fixed header */
   min-height: 100vh;
   overflow-y: auto;
 }
 
+/* Fixed top navigation bar */
 .top-nav {
   position: fixed;
   top: 0;
@@ -27,17 +28,23 @@ body {
   align-items: center;
   padding: 15px 25px;
   background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  flex-wrap: nowrap; /* change in media query */
 }
 
+/* Logo style */
 .logo {
   font-size: 40px;
   font-weight: bold;
   color: #ff5733;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Location Section */
 .location-section {
   display: flex;
   flex-direction: column;
@@ -45,6 +52,7 @@ body {
   gap: 10px;
 }
 
+/* Button for current location */
 .current-location-btn {
   padding: 5px 10px;
   background-color: #ff5733;
@@ -54,68 +62,85 @@ body {
   border-radius: 5px;
 }
 
+/* Location search container */
 .location-search {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+/* Location input */
 .location-input {
   padding: 14px;
   width: 300px;
+  max-width: 100%;
   border: 1px solid #484747;
   border-radius: 5px;
   margin-right: 5px;
+  box-sizing: border-box;
 }
 
+/* Search bar container */
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
   background-color: #d4d4cf;
-  padding: 14px;
+  padding: 10px 15px;
   border-radius: 5px;
   margin-right: 50px;
   border: none;
+  box-sizing: border-box;
+  max-width: 400px;
+  width: 100%;
 }
 
+/* Search input */
 .search-bar input {
   border: none;
   padding: 14px;
-  width: 400px;
+  width: 100%;
   background-color: transparent;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
+/* User actions container */
 .user-actions {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: nowrap; /* change in media query */
+  white-space: nowrap;
 }
 
+/* Icon style */
 .icon {
   color: #ff5733;
-  margin-right: 20px;
   font-size: 30px;
+  margin-right: 10px;
 }
 
+/* Hero Section */
 .hero {
   margin: 150px auto 20px;
   text-align: center;
-  padding: 50px 300px;
+  padding: 50px 40px;
   border-radius: 40px;
   background-color: #84c09a;
   color: white;
   max-width: 800px;
   position: relative;
-  margin-top: 9000px;
+  box-sizing: border-box;
 }
 
-
+/* Hero heading */
 .hero h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
 
+/* Call to action button */
 .cta-button {
   padding: 10px 20px;
   background-color: white;
@@ -127,13 +152,16 @@ body {
   border-radius: 5px;
 }
 
+/* Categories container */
 .categories-section {
   display: flex;
   justify-content: center;
   margin: 20px 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
+/* Categories list */
 .categories {
   display: flex;
   flex-wrap: nowrap;
@@ -143,14 +171,16 @@ body {
   white-space: nowrap;
   padding: 10px;
   width: 94%;
-  scrollbar-width: none;
+  scrollbar-width: none; /* Firefox hide scrollbar */
+  box-sizing: border-box;
 }
 
-/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+/* Hide scrollbar for Chrome, Safari, Edge */
 .categories::-webkit-scrollbar {
   display: none;
 }
 
+/* Category button */
 .category-button {
   padding: 15px 20px;
   background: linear-gradient(135deg, #3ed546, #692eba);
@@ -165,22 +195,26 @@ body {
   min-width: 120px;
 }
 
+/* Hover effect */
 .category-button:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
 }
 
+/* Active category style */
 .active {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Profile container */
 .profile-container {
   position: relative;
   display: inline-block;
 }
 
+/* Profile button */
 .profile-button {
   background-color: transparent;
   border: none;
@@ -189,8 +223,10 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 6px;
 }
 
+/* Dropdown menu */
 .dropdown-menu {
   position: absolute;
   right: 0;
@@ -203,10 +239,12 @@ body {
   padding: 10px;
 }
 
+/* Dropdown menu paragraphs */
 .dropdown-menu p {
   margin: 5px 0;
 }
 
+/* Dropdown buttons */
 .dropdown-menu button {
   background: none;
   border: none;
@@ -215,20 +253,25 @@ body {
   padding: 5px 0;
   width: 100%;
   cursor: pointer;
+  font-size: 14px;
 }
 
+/* Dropdown button hover */
 .dropdown-menu button:hover {
   background-color: #f1f1f1;
 }
 
+/* Products section */
 .products-section {
   padding: 30px;
   background-color: #6cbbd5;
   margin: 20px auto;
-  position: relative;
   max-width: 1200px;
+  position: relative;
+  box-sizing: border-box;
 }
 
+/* Products title */
 .products-title {
   font-size: 2rem;
   text-align: center;
@@ -236,50 +279,60 @@ body {
   color: #222121;
 }
 
+/* Products grid */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
+/* Loading message */
 .loading-message {
   text-align: center;
   font-size: 1.5rem;
   color: #666;
 }
 
+/* Individual product card */
 .product-card {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
+/* Product image */
 .product-image {
   width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
+/* Product name */
 .product-name {
   font-size: 1.2rem;
   margin: 10px 0;
 }
 
+/* Product description */
 .product-description {
   color: #777;
   margin-bottom: 10px;
 }
 
+/* Product price */
 .product-price {
   font-size: 1.2rem;
   color: #ff5733;
   margin-bottom: 10px;
 }
 
+/* Add to cart button */
 .add-to-cart-button {
   padding: 10px 20px;
   background-color: #ff5733;
@@ -290,11 +343,10 @@ body {
   font-size: 16px;
 }
 
-
+/* Scroll to top button */
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
-  /* Keeps it at the bottom-right */
   right: 20px;
   background-color: #ff5733;
   color: white;
@@ -304,19 +356,94 @@ body {
   cursor: pointer;
   font-size: 20px;
   z-index: 1100;
-  /* Ensure it's above the header */
   transition: opacity 0.3s ease-in-out;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  /* Hidden by default */
   pointer-events: none;
 }
 
+/* Scroll to top visible */
 .scroll-to-top.show {
   opacity: 1;
   pointer-events: auto;
 }
 
+/* Scroll to top hover */
 .scroll-to-top:hover {
   background-color: #d94b2f;
+}
+
+/* ================== MOBILE RESPONSIVE =================== */
+@media (max-width: 768px) {
+  /* Allow top-nav children to wrap */
+  .top-nav {
+    flex-wrap: wrap;
+    padding: 10px 15px !important;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Logo smaller font */
+  .logo {
+    font-size: 28px !important;
+  }
+
+  /* Search bar full width */
+  .search-bar {
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 10px 12px !important;
+  }
+
+  .search-bar input {
+    width: 100% !important;
+    padding: 10px !important;
+  }
+
+  /* Location input full width */
+  .location-input {
+    width: 100% !important;
+  }
+
+  /* User actions wrap and center */
+  .user-actions {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  /* Categories full width and padding */
+  .categories {
+    width: 100% !important;
+    padding: 5px 10px !important;
+  }
+
+  /* Categories scroll horizontal */
+  .categories {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Category buttons smaller */
+  .category-button {
+    min-width: 90px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Products grid 1 column */
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 10px !important;
+  }
+
+  /* Hero padding reduced */
+  .hero {
+    padding: 30px 20px !important;
+    margin-top: 150px !important;
+    max-width: 100% !important;
+  }
 }
