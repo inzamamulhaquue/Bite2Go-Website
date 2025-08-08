@@ -16,7 +16,9 @@ const Orders = () => {
             }
 
             try {
-                const response = await axios.get(`http://localhost:5005/api/orders/${userId}`, {
+                // const response = await axios.get(`http://localhost:5005/api/orders/${userId}`, {
+                const response = await axios.get(/orders/${userId}`, {
+                
                     headers: {
                         Authorization: `Bearer ${token}`,
                     }
