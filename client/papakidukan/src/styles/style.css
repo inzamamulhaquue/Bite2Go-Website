@@ -1,1 +1,85 @@
 
+/* Ensure container is full width and padded */
+.home-container {
+  max-width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Header flex wrap for small screens */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Important for wrapping on small screens */
+  padding: 10px 20px;
+}
+
+/* Logo font size smaller on mobile */
+.logo {
+  font-size: 1.8rem;
+  white-space: nowrap; /* avoid line breaks */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Search bar width responsive */
+.search-bar input {
+  width: 300px;
+  max-width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+/* User actions container wrap on mobile */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Products grid responsive */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  width: 100%;
+}
+
+/* Categories section buttons wrap */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Category buttons smaller on mobile */
+.category-button {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar input {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr; /* single column on mobile */
+  }
+
+  .category-button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
