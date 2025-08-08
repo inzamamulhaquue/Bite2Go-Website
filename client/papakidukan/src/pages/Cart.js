@@ -91,7 +91,9 @@ const Cart = () => {
 
         const fetchAddress = async () => {
             try {
-                const response = await axios.get(`http://localhost:5005/api/user/address/${userId}`);
+                // const response = await axios.get(`http://localhost:5005/api/user/address/${userId}`);
+                const response = await axios.get(`https://bite2go-website.onrender.com/api/user/address/${userId}`);
+                
                 if (response.data && response.data.address) {
                     setAddress(response.data.address);
                 }
@@ -124,7 +126,8 @@ const Cart = () => {
         setShowPaymentOptions(false);
 
         try {
-            const response = await axios.post("http://localhost:5005/api/orders/create", {
+            // const response = await axios.post("http://localhost:5005/api/orders/create", {
+            const response = await axios.post("https://bite2go-website.onrender.com/api/orders/create" , {
                 userId,
                 address,
                 paymentMethod: method,
@@ -158,7 +161,8 @@ const Cart = () => {
             if (address) return;
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get("http://localhost:5005/api/addresses/default", {
+                // const response = await axios.get("http://localhost:5005/api/addresses/default", {
+                const response = await axios.get("https://bite2go-website.onrender.com/api/addresses/default" , {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json",
