@@ -10,12 +10,20 @@ export const CartProvider = ({ children }) => {
     const [userId, setUserId] = useState(null);
 
     // Fetch user ID dynamically
+    // useEffect(() => {
+    //     const storedUserId = localStorage.getItem("userId");
+    //     if (storedUserId) {
+    //         setUserId(storedUserId);
+    //     }
+    // }, []);
+
     useEffect(() => {
-        const storedUserId = localStorage.getItem("userId");
-        if (storedUserId) {
-            setUserId(storedUserId);
-        }
-    }, []);
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+        setUserId(storedUserId);
+    }
+}, []);
+
 
     // Fetch cart only when `userId` is available
     useEffect(() => {
