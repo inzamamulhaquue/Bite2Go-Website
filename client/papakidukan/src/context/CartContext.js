@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
     if (loading) {
     return <div>Loading...</div>; // prevent early redirect
 }
-    return userId ? <Cart /> : <Navigate to="/register" replace />;
+    // return userId ? <Cart /> : <Navigate to="/register" replace />;
 
 
     // Fetch cart only when `userId` is available
