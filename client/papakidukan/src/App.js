@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import ProfileDashboard from './pages/ProfileDashboard';
 import LocationSearch from './components/LocationSearch';
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
 import ProductsList from "./components/ProductsList";
 import Cart from './pages/Cart';
 import { CartProvider } from './context/CartContext';
