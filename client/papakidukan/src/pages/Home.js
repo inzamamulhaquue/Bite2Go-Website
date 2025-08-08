@@ -2,14 +2,12 @@
     import "../styles/Home.css";
     import { FaShoppingCart, FaSearch } from "react-icons/fa";
     import LocationSearch from "../components/LocationSearch";
-    import { useNavigate } from "react-router-dom";
+    import { useNavigate, Link } from "react-router-dom";
     import { LogOut, LogIn, UserCircle } from 'lucide-react';
     import AuthContext from "../context/AuthContext";
     import ProductCard from "../components/ProductCard";
     import { fetchProducts } from "../services/productService";
     import CartContext from '../context/CartContext';
-
-import { Link } from "react-router-dom"; //cart reg prob
 
     const Home = () => {
         const [userLocation, setUserLocation] = useState("");
@@ -159,17 +157,10 @@ import { Link } from "react-router-dom"; //cart reg prob
                             </button>
                         )}
 
-//prob
-                            
+                            {/* Use React Router Link instead of <a href> */}
                             <Link to="/cart" className="cart-link">
                             <FaShoppingCart className="icon" /> Cart ({cart?.items.reduce((total, item) => total + item.quantity, 0)})
                             </Link>
-
-// prob
-                        // <a href="/cart" className="cart-link">
-                            {/* <FaShoppingCart className="icon" /> Cart ({Object.values(cartItems).reduce((a, b) => a + b, 0)}) */}
-                        //     <FaShoppingCart className="icon" /> Cart ({cart?.items.reduce((total, item) => total + item.quantity, 0)})
-                        // </a>
                     </div>
                 </header>
 
