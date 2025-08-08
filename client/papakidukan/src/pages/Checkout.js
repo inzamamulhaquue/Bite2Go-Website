@@ -49,7 +49,8 @@ const Checkout = () => {
         console.log("Sending Order Data:", orderData);
 
         try {
-            const response = await fetch("http://localhost:5005/api/orders/create", {
+            // const response = await fetch("http://localhost:5005/api/orders/create", {
+            const response = await fetch("https://bite2go-website.onrender.com/api/orders/create" , {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
