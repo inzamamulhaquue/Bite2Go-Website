@@ -19,12 +19,6 @@ export const CartProvider = ({ children }) => {
         setLoading(false); // done checking
     }, []);
 
-    
-    if (loading) {
-    return <div>Loading...</div>; // prevent early redirect
-}
-    // return userId ? <Cart /> : <Navigate to="/register" replace />;
-
 
     // Fetch cart only when `userId` is available
     useEffect(() => {
@@ -32,6 +26,11 @@ export const CartProvider = ({ children }) => {
             fetchCart();
         }
     }, [userId]);
+
+      if (loading) {
+    return <div>Loading...</div>; // prevent early redirect
+}
+    // return userId ? <Cart /> : <Navigate to="/register" replace />;
 
     // Fetch Cart Data
     const fetchCart = async () => {
