@@ -42,7 +42,7 @@ const AppRoutes = () => {
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/order-success" element={<OrderSuccess />} />
                 <Route path="/payment" element={<PaymentPage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<Navigate to="/register" replace />} />
             </Routes>
         </Router>
     );
