@@ -87,7 +87,8 @@ const reverseGeocode = async (lat, lng) => {
 
 const sendLocationToBackend = async (latitude, longitude, address) => {
     try {
-        const response = await fetch('http://localhost:5005/api/location', {
+        // const response = await fetch('http://localhost:5005/api/location', {
+        const response = await fetch('https://bite2go-website.onrender.com/api/location' , {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ latitude, longitude, address })
