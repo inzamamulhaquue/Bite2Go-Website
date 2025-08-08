@@ -8,21 +8,22 @@ const API_URL = "https://bite2go-website.onrender.com/api";
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({ items: [], totalAmount: 0 });
     const [userId, setUserId] = useState(null);
+    const [loading, setLoading] = useState(true); // add loading state
 
     // Fetch user ID dynamically
-    // useEffect(() => {
-    //     const storedUserId = localStorage.getItem("userId");
-    //     if (storedUserId) {
-    //         setUserId(storedUserId);
-    //     }
-    // }, []);
-
     useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    if (storedUserId) {
-        setUserId(storedUserId);
-    }
-}, []);
+        const storedUserId = localStorage.getItem("userId");
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+        setLoading(false); // done checking
+    }, []);
+
+    
+    if (loading) {
+    return <div>Loading...</div>; // prevent early redirect
+}
+    return userId ? <Cart /> : <Navigate to="/register" replace />;
 
 
     // Fetch cart only when `userId` is available
