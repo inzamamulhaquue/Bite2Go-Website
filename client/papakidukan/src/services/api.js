@@ -1,6 +1,7 @@
 export const createOrder = async (orderData) => {
     try {
-        const response = await fetch("http://localhost:5005/api/orders/create", {
+        // const response = await fetch("http://localhost:5005/api/orders/create", {
+        const response = await fetch("https://bite2go-website-back1.onrender.com/api/orders/create", {
             method: "POST",
             body: JSON.stringify(orderData),
             headers: { "Content-Type": "application/json" }
