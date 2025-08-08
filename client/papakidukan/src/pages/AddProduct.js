@@ -29,7 +29,8 @@ const AddProduct = () => {
         data.append("image", formData.image);
 
         try {
-            await axios.post("http://localhost:5000/api/products/add", data);
+            // await axios.post("http://localhost:5000/api/products/add", data);
+            await axios.post("https://bite2go-website.onrender.com/api/products/add", data);
             alert("Product added successfully!");
         } catch (error) {
             console.error("Error adding product:", error);
