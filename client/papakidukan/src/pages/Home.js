@@ -9,6 +9,8 @@
     import { fetchProducts } from "../services/productService";
     import CartContext from '../context/CartContext';
 
+import { Link } from "react-router-dom"; //cart reg prob
+
     const Home = () => {
         const [userLocation, setUserLocation] = useState("");
         const navigate = useNavigate();
@@ -157,10 +159,17 @@
                             </button>
                         )}
 
-                        <a href="/cart" className="cart-link">
-                            {/* <FaShoppingCart className="icon" /> Cart ({Object.values(cartItems).reduce((a, b) => a + b, 0)}) */}
+//prob
+                            
+                            <Link to="/cart" className="cart-link">
                             <FaShoppingCart className="icon" /> Cart ({cart?.items.reduce((total, item) => total + item.quantity, 0)})
-                        </a>
+                            </Link>
+
+// prob
+                        // <a href="/cart" className="cart-link">
+                            {/* <FaShoppingCart className="icon" /> Cart ({Object.values(cartItems).reduce((a, b) => a + b, 0)}) */}
+                        //     <FaShoppingCart className="icon" /> Cart ({cart?.items.reduce((total, item) => total + item.quantity, 0)})
+                        // </a>
                     </div>
                 </header>
 
