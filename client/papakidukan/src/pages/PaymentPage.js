@@ -18,7 +18,8 @@ const Payment = () => {
     const processPayment = async () => {
         try {
             setTimeout(async () => {
-                const response = await axios.post("http://localhost:5005/api/orders/create", {
+                // const response = await axios.post("http://localhost:5005/api/orders/create", {
+                const response = await axios.post("https://bite2go-website.onrender.com/api/orders/create" , {
                     ...orderData,
                     paymentMethod: "Online",
                     paymentStatus: "Paid"
