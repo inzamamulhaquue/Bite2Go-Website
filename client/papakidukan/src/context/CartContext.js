@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const CartContext = createContext();
-
 const API_URL = "https://bite2go-website.onrender.com/api";
 
 export const CartProvider = ({ children }) => {
@@ -20,17 +19,12 @@ export const CartProvider = ({ children }) => {
     }, []);
 
 
-    // Fetch cart only when `userId` is available
+    // Fetch cart only when `userId` is available before run logout
     useEffect(() => {
         if (userId) {
             fetchCart();
         }
     }, [userId]);
-
-      if (loading) {
-    return <div>Loading...</div>; // prevent early redirect
-}
-    // return userId ? <Cart /> : <Navigate to="/register" replace />;
 
     // Fetch Cart Data
     const fetchCart = async () => {
@@ -128,8 +122,13 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    // ✅ Don't render children until we've checked localStorage
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateCartItem, deleteFromCart, fetchCart }}>
+        <CartContext.Provider value={{ cart, addToCart, updateCartItem, deleteFromCart, fetchCart, userId }}>
             {children}
         </CartContext.Provider>
     );
