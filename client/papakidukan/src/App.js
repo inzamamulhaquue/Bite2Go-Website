@@ -15,6 +15,7 @@ import Orders from "./pages/Order";
 import OrderSuccess from "./pages/OrderSuccess";
 import PaymentPage from './pages/PaymentPage';
 import './styles/global.css';
+import { Navigate } from "react-router-dom";
 
 // ✅ Separated child component to safely use useAuth
 const AppRoutes = () => {
@@ -40,7 +41,8 @@ const AppRoutes = () => {
                 <Route path="/review/:productId" element={<ReviewForm />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/order-success" element={<OrderSuccess />} />
-                <Route path="/payment" element={<PaymentPage />} /> 
+                <Route path="/payment" element={<PaymentPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Router>
     );
