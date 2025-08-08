@@ -71,9 +71,11 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-// export default AuthContext;
+
 
 // ✅ Make sure this hook is exported
 export const useAuth = () => useContext(AuthContext);
+export default AuthContext;
+
 
 
